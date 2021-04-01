@@ -6,7 +6,7 @@ iter:	.word	0x1
 	.text
 main:
 	addiu	$29, $29, -8
-	sw	30, 4($29)
+	sw	$30, 4($29)
 	addu	$30, $29, $0
 	j	loop1
 loop3:
