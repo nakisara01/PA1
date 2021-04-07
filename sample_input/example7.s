@@ -3,14 +3,14 @@ data1:	.word   1
 data2:	.word   10
 	.text
 main:
-	addiu	$29, $29,-24
+	addiu	$29, $29, -24
 	sw	$30, 20($29)
 	addu	$30, $29, $0
 	sw	$0, 8($30)
 loop1:
 	lw	$2, 8($30)
-	sltiu	$2, $2,20
-	beq	$2, $0,loop2
+	sltiu	$2, $2, 20
+	beq	$2, $0, loop2
 	lui	$4, 0x1000
 	lw	$2, 0($4)
 	sw	$2, 12($30)
@@ -27,4 +27,4 @@ loop2:
 	addu	$29, $30, $0
 	lw	$30, 20($29)
 	addiu	$29, $29, 24
-	j	$31
+	jr	$31
