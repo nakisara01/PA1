@@ -17,7 +17,20 @@ clean:
 help:
 	@echo "The following options are provided with Make\n\t$$ make \t\t# build assembler\n\t$$ make clean \t# clean the build\n\t$$ make test \t# test cases"
 
-test: $(TARGET) test_1 test_2 test_3 test_4 test_5 test_6 test_7
+test: $(TARGET) test_0 test_1 test_2 test_3 test_4 test_5 test_6 test_7
+
+#test_0: $(TARGET)
+#	@echo "Testing example0"; \
+#	./$(TARGET) sample_input/example0.s; \
+#	diff -Naur sample_input/example0.o sample_output/example0.o; \
+#	if [ $$? -eq 0 ]; then echo "\tTest seems correct\n"; else echo "\tResults not identical, check the diff output\n"; fi
+#
+
+test_0: $(TARGET)
+	@echo "Testing example0"; \
+	./$(TARGET) sample_input/example0.s; \
+	diff -Naur sample_input/example0.o sample_output/example0.o; \
+	if [ $$? -eq 0 ]; then echo "\tTest seems correct\n"; else echo "\tResults not identical, check the diff output\n"; fi
 
 test_1: $(TARGET)
 	@echo "Testing example1"; \

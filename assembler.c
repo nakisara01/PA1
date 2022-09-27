@@ -15,7 +15,7 @@
 #define MEM_TEXT_START          0x00400000
 #define MEM_DATA_START          0x10000000
 #define BYTES_PER_WORD          4
-#define INST_LIST_LEN           20
+#define INST_LIST_LEN           22
 
 /******************************************************
  * Structure Declaration
@@ -33,7 +33,7 @@ typedef struct symbol_struct {
     uint32_t address;
 } symbol_t;
 
-enum section { 
+enum section {
     DATA = 0,
     TEXT,
     MAX_SIZE
@@ -44,26 +44,28 @@ enum section {
  *******************************************************/
 
 inst_t inst_list[INST_LIST_LEN] = {       //  idx
-    {"addiu",   "001001", 'I', ""},       //    0
-    {"addu",    "000000", 'R', "100001"}, //    1
-    {"and",     "000000", 'R', "100100"}, //    2
-    {"andi",    "001100", 'I', ""},       //    3
-    {"beq",     "000100", 'I', ""},       //    4
-    {"bne",     "000101", 'I', ""},       //    5
-    {"j",       "000010", 'J', ""},       //    6
-    {"jal",     "000011", 'J', ""},       //    7
-    {"jr",      "000000", 'R', "001000"}, //    8
-    {"lui",     "001111", 'I', ""},       //    9
-    {"lw",      "100011", 'I', ""},       //   10
-    {"nor",     "000000", 'R', "100111"}, //   11
-    {"or",      "000000", 'R', "100101"}, //   12
-    {"ori",     "001101", 'I', ""},       //   13
-    {"sltiu",   "001011", 'I', ""},       //   14
-    {"sltu",    "000000", 'R', "101011"}, //   15
-    {"sll",     "000000", 'R', "000000"}, //   16
-    {"srl",     "000000", 'R', "000010"}, //   17
-    {"sw",      "101011", 'I', ""},       //   18
-    {"subu",    "000000", 'R', "100011"}  //   19
+    {"add",     "000000", 'R', "100000"}, //    0
+    {"sub",     "000000", 'R', "100010"}, //    1
+    {"addiu",   "001001", 'I', ""},       //    2
+    {"addu",    "000000", 'R', "100001"}, //    3
+    {"and",     "000000", 'R', "100100"}, //    4
+    {"andi",    "001100", 'I', ""},       //    5
+    {"beq",     "000100", 'I', ""},       //    6
+    {"bne",     "000101", 'I', ""},       //    7
+    {"j",       "000010", 'J', ""},       //    8
+    {"jal",     "000011", 'J', ""},       //    9
+    {"jr",      "000000", 'R', "001000"}, //   10
+    {"lui",     "001111", 'I', ""},       //   11
+    {"lw",      "100011", 'I', ""},       //   12
+    {"nor",     "000000", 'R', "100111"}, //   13
+    {"or",      "000000", 'R', "100101"}, //   14
+    {"ori",     "001101", 'I', ""},       //   15
+    {"sltiu",   "001011", 'I', ""},       //   16
+    {"sltu",    "000000", 'R', "101011"}, //   17
+    {"sll",     "000000", 'R', "000000"}, //   18
+    {"srl",     "000000", 'R', "000010"}, //   19
+    {"sw",      "101011", 'I', ""},       //   20
+    {"subu",    "000000", 'R', "100011"}  //   21
 };
 
 symbol_t SYMBOL_TABLE[MAX_SYMBOL_TABLE_SIZE]; // Global Symbol Table
@@ -103,7 +105,7 @@ void symbol_table_add_entry(symbol_t symbol)
 }
 
 /* Convert integer number to binary string */
-char* num_to_bits(unsigned int num, int len) 
+char* num_to_bits(unsigned int num, int len)
 {
     char* bits = (char *) malloc(len+1);
     int idx = len-1, i;
@@ -123,7 +125,7 @@ char* num_to_bits(unsigned int num, int len)
 }
 
 /* Record .text section to output file */
-void record_text_section(FILE *output) 
+void record_text_section(FILE *output)
 {
     uint32_t cur_addr = MEM_TEXT_START;
     char line[1024];
