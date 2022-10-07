@@ -18,7 +18,7 @@ loop:
 	sll	$18, $17, 1
 	sll	$17, $18, 1
 	addu	$11, $11, $31
-	nor	$16, $17, $18	
+	nor	$16, $17, $18
 	bne	$11, $8, loop
 	j	exit
 exit:
