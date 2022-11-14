@@ -1,4 +1,4 @@
-# Project 1. MIPS Assembler
+# Project #1: Implementing a MIPS Assembler
 This project is to implement a MIPS ISA assembler and a given code is a basic skeleton for input and output.
 
 ## Introductions
